@@ -1,0 +1,336 @@
+/* Bible Bored Games: shared stylesheet for the studio website.
+   The links page (/links/) is the first page built on it; the full site
+   (Home, a page per game, About, Contact, Privacy) will reuse it.
+   Colors come from the studio color system (HQ social/colour-system.md)
+   and the app icons (HQ D-114). Fonts are self-hosted, OFL (see assets/fonts). */
+
+@font-face {
+  font-family: "Libre Franklin";
+  src: url("fonts/LibreFranklin-500.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Libre Franklin";
+  src: url("fonts/LibreFranklin-600.ttf") format("truetype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Literata";
+  src: url("fonts/Literata-400.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --scarlet: #86302A;
+  --scarlet-deep: #74291F;
+  --linen: #F2EADB;
+  --paper: #F8F3E9;
+  --ink: #2B2623;
+  --quiet: #6B5F57;
+  --forest: #2D5D30;
+  --forest-deep: #244B27;
+  --navy: #2E4D7B;
+  --navy-deep: #253F66;
+  --hairline: rgba(43, 38, 35, 0.12);
+  --cover-soft: rgba(242, 234, 219, 0.86);
+
+  --sans: "Libre Franklin", "Helvetica Neue", Arial, sans-serif;
+  --serif: "Literata", Georgia, "Times New Roman", serif;
+
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--linen);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, p, ul { margin: 0; }
+ul { padding: 0; list-style: none; }
+img { display: block; }
+
+a { color: inherit; }
+
+:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+/* ---------- The cover: the studio's scarlet, with the ribbon hanging in ---------- */
+
+.cover {
+  position: relative;
+  overflow: hidden;
+  background: var(--scarlet);
+  color: var(--linen);
+  text-align: center;
+  padding: 216px 16px 56px;
+}
+
+.cover__ribbon {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 76px;
+  height: 176px;
+  transform: translateX(-50%);
+  fill: var(--linen);
+}
+
+.cover__name {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: clamp(28px, 8.8vw, 40px);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+
+.cover__tagline {
+  margin-top: 12px;
+  font-family: var(--serif);
+  font-size: clamp(20px, 5.6vw, 24px);
+  line-height: 1.3;
+}
+
+.cover__line {
+  margin-top: 8px;
+  font-family: var(--serif);
+  font-size: 16px;
+  color: var(--cover-soft);
+}
+
+/* ---------- The page ---------- */
+
+.page {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 32px 16px 40px;
+}
+
+.game {
+  background: var(--paper);
+  border: 1px solid var(--hairline);
+  border-radius: 16px;
+  padding: 20px 20px 8px;
+}
+
+.game + .game { margin-top: 16px; }
+
+.game__head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.game__icon {
+  flex: none;
+  width: 72px;
+  height: 72px;
+  border-radius: 16px;
+  box-shadow: 0 1px 2px rgba(43, 38, 35, 0.12), 0 4px 12px rgba(43, 38, 35, 0.08);
+}
+
+.game__name {
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 21px;
+  line-height: 1.2;
+}
+
+.game__subname {
+  display: block;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 1.35;
+  color: var(--quiet);
+  margin-top: 2px;
+}
+
+.game__status {
+  margin-top: 4px;
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--quiet);
+}
+
+.game__line {
+  margin-top: 16px;
+  text-wrap: pretty;
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+.stores {
+  display: flex;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.button {
+  flex: 1 1 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 16px;
+  border-radius: 10px;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 160ms var(--ease), color 160ms var(--ease), transform 120ms var(--ease);
+}
+
+.button:active { transform: scale(0.98); }
+
+.button--theword { background: var(--forest); color: var(--linen); }
+.button--theword:hover { background: var(--forest-deep); }
+
+.button--enigma { background: var(--navy); color: var(--linen); }
+.button--enigma:hover { background: var(--navy-deep); }
+
+.button--enigma-outline {
+  color: var(--navy);
+  box-shadow: inset 0 0 0 1.5px var(--navy);
+}
+.button--enigma-outline:hover { background: rgba(46, 77, 123, 0.08); }
+
+.small-links {
+  display: flex;
+  gap: 24px;
+  margin-top: 4px;
+}
+
+.small-links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 14px;
+  color: var(--quiet);
+  text-decoration: underline;
+  text-decoration-color: rgba(107, 95, 87, 0.4);
+  text-underline-offset: 3px;
+  transition: color 160ms var(--ease), text-decoration-color 160ms var(--ease);
+}
+.small-links a:hover { color: var(--ink); text-decoration-color: currentColor; }
+
+/* ---------- Follow and contact ---------- */
+
+.block {
+  margin-top: 40px;
+  padding: 0 4px;
+  text-align: center;
+}
+
+.block__title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 15px;
+  color: var(--quiet);
+}
+
+.follow[data-enabled="false"] { display: none; }
+
+.follow__links {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}
+
+.follow__links a,
+.contact__mail {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 17px;
+  color: var(--scarlet);
+  text-decoration: underline;
+  text-decoration-color: rgba(134, 48, 42, 0.35);
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+  overflow-wrap: anywhere;
+  transition: text-decoration-color 160ms var(--ease);
+}
+.follow__links a:hover,
+.contact__mail:hover { text-decoration-color: currentColor; }
+
+.footer {
+  margin-top: 32px;
+  padding-top: 20px;
+  border-top: 1px solid var(--hairline);
+  text-align: center;
+  font-family: var(--sans);
+  font-weight: 500;
+  font-size: 13px;
+  color: var(--quiet);
+}
+
+/* ---------- Narrow phones (320 to 359 px) ---------- */
+
+@media (max-width: 359px) {
+  .game { padding: 16px 16px 4px; }
+  .game__head { gap: 12px; }
+  .game__icon { width: 60px; height: 60px; border-radius: 14px; }
+  .game__name { font-size: 19px; }
+  .game__status { font-size: 12px; }
+  .button { padding: 0 8px; font-size: 15px; white-space: nowrap; }
+}
+
+/* ---------- Wide screens: a book laid open, cover on the left, page on the right ---------- */
+
+@media (min-width: 900px) {
+  body {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+    min-height: 100vh;
+  }
+
+  .cover {
+    min-height: 100vh;
+    padding: calc(42vh + 64px) 48px 64px;
+  }
+
+  .cover__ribbon { width: 112px; height: 42vh; min-height: 260px; }
+
+  .cover__name { font-size: 48px; }
+  .cover__tagline { margin-top: 16px; font-size: 28px; }
+  .cover__line { margin-top: 12px; font-size: 18px; }
+
+  .page {
+    width: 100%;
+    max-width: 512px;
+    padding: 96px 32px 48px;
+    align-self: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button, .small-links a, .contact__mail { transition: none; }
+  .button:active { transform: none; }
+}
